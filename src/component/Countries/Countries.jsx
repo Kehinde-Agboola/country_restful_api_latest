@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
   
 const Countries = () =>{
-
+    let params = useParams();
     const [country, setcountries] = useState([]);
     const getCountry = async () => {
         const check = localStorage.getItem('Countries');
@@ -23,13 +24,15 @@ const Countries = () =>{
         }
       };
       useEffect(() => {
-        getCountry();
-      }, []);
+        getCountry(params.type);
+        console.log(params.type)
+      }, [params.type]);
 
      
 
     return(
         <div className="max-w-full py-6 md:px-10 px-3 grid sm:grid sm:grid-cols-2 md:grid md:grid-cols-3 xl:grid xl:grid-cols-4 gap-16 mx-auto items-center justify-center">
+            <Link to={'/details/' + Countries.name}>
             {
           country?.map((items, index) => (
             <div key={index} className="container rounded-lg shadow-lg bg-white dark:bg-gray-700 dark:text-white pb-4">
@@ -57,6 +60,7 @@ const Countries = () =>{
       </div>
             </div>
           ))}
+          </Link>
         </div>
     )
 }

@@ -21,16 +21,15 @@ const Home = () =>{
         //   localStorage.getItem("check", JSON.parse(!dark))
         }
       };
-
-    const filterByRegion = async (region) => {
-        setloading(true);
+      const filterByRegion = async (region) => {
+        // setloading(true);
         if (region === "") return;
         const res = await fetch(
           `https://restcountries.com/v3.1/region/{region}${region}`
         );
         const data = await res.json();
-        setloading(false);
-        setcountries(data);
+        // setloading(false);
+        Countries(data);
       };
     return (
         <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
@@ -64,11 +63,11 @@ const Home = () =>{
               onChange={(val) => filterByRegion(val.target.value)}
             >
               <option value="">Filter by Religion</option>
-              <option value="">Africa</option>
-              <option value="">Europe</option>
-              <option value="">Asia</option>
-              <option value="">Oceania</option>
-              <option value="">America</option>
+              <option value="Africa">Africa</option>
+              <option value="Europe">Europe</option>
+              <option value="Asia">Asia</option>
+              <option value="Oceania">Oceania</option>
+              <option value="America">America</option>
             </select>
           </div>
     
